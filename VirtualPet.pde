@@ -1,10 +1,19 @@
+import processing.serial.*;
+import cc.arduino.*;
+Arduino arduino; 
 
-void setup(){
-  //some of your code here
-}
-void draw(){
+void setup() {
 size(400, 400);
-//background
+  arduino = new Arduino(this, Arduino.list()[0], 57600); //change the [0] to a [1] or [2] etc. if your program doesn't work
+}
+//backgroun
+void draw() {
+  //arduino
+  background(192);
+  for(int i = 0; i < 16; i++)
+    System.out.print(i+" "+arduino.analogRead(i) + "\t");
+  System.out.println();
+  
 background(107, 184, 214);
 fill(55, 163, 64);
 noStroke();
@@ -25,12 +34,24 @@ ellipse(100, 120, 100, 100);
 fill(219, 114, 177);
 ellipse(125,130,20,20);
 //eyes
-fill(255, 255, 255);
-ellipse(70, 110, 10, 10);
-ellipse(120, 110, 10, 10);
+  fill(255, 255, 255);
+
+int x = arduino.analogRead(5);
+if (x>20){
+  x=10;
+}
+ellipse(70, 110, 10*x, 10*x);
+ellipse(120, 110, 10*x, 10*x);
+x = x + 1;
+
+
 fill(0,0,0);
-ellipse(70,110,5,5);
-ellipse(120,110,5,5);
+ellipse(70,110,5*x,5*x);
+ellipse(120,110,5*x,5*x);
+
+//mouth
+fill(128, 31, 116);
+rect(80,150,10,5*x);
 //nose
 fill(252, 3, 86);
 ellipse(80, 140, 40, 20);

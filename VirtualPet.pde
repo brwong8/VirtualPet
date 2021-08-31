@@ -37,21 +37,30 @@ ellipse(125,130,20,20);
   fill(255, 255, 255);
 
 int x = arduino.analogRead(5);
-if (x>20){
-  x=10;
+if (x>5){
+  x=5;
 }
+
 ellipse(70, 110, 10*x, 10*x);
 ellipse(120, 110, 10*x, 10*x);
 x = x + 1;
 
 
 fill(0,0,0);
-ellipse(70,110,5*x,5*x);
-ellipse(120,110,5*x,5*x);
+ellipse(70,110,5+x,5+x);
+ellipse(120,110,5+x,5+x);
 
 //mouth
-fill(128, 31, 116);
-rect(80,150,10,5*x);
+fill(219, 90, 155);
+if (x>3) {
+  x=5;
+  fill(0,0,0);
+  text("wow!",100,100);
+}
+fill(219, 90, 155);
+rect(77,150,15,10*x);
+fill(0,0,0);
+rect(80,160,10,5*x);
 //nose
 fill(252, 3, 86);
 ellipse(80, 140, 40, 20);
